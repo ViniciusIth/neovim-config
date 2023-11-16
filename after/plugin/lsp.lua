@@ -10,3 +10,4 @@ end)
 -- installed language servers
 require'lspconfig'.gopls.setup{}
 require'lspconfig'.lua_ls.setup {}
+require'lspconfig'.htmx.setup{}
