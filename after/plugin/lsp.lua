@@ -16,10 +16,10 @@ require'lspconfig'.gopls.setup{
     root_dir = require('lspconfig/util').root_pattern("go.work", "go.mod", ".git"),
     settings = {
         gopls = {
-            completeUninported = true,
             usePlaceholders = true,
             analyzes = {
-                unusedparams = true
+                unusedparams = true,
+                unusedvariable = true
             }
         }
     }

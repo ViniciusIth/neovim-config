@@ -8,13 +8,16 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     -- Theme
-    use({
-        'rose-pine/neovim',
-        as = 'rose-pine',
-        config = function()
-            vim.cmd('colorscheme rose-pine')
-        end
-    })
+    -- use({
+    --     'rose-pine/neovim',
+    --     as = 'rose-pine',
+    --     config = function()
+    --         vim.cmd('colorscheme rose-pine')
+    --     end
+    -- })
+
+    use { "catppuccin/nvim", as = "catppuccin" }
+
 
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.4',
@@ -26,6 +29,12 @@ return require('packer').startup(function(use)
     use('mbbill/undotree')
     use('tpope/vim-fugitive')
     use('numToStr/Comment.nvim')
+
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
+
 
     -- LSP
     use {
@@ -44,6 +53,8 @@ return require('packer').startup(function(use)
             {'L3MON4D3/LuaSnip'},
         }
     }
+
+    use("christoomey/vim-tmux-navigator")
 
     use {
         "olexsmir/gopher.nvim",

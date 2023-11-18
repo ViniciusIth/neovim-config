@@ -4,6 +4,10 @@ local keymap = vim.keymap
 
 keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
+
+-- Save with <leader>w
+keymap.set("n", "<leader>w", ":w<CR>")
+
 -- Escape with jj
 keymap.set({"i"}, "jj", "<esc>")
 
@@ -17,3 +21,32 @@ keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Dunno exactly how it works, but it makes things executable
 keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+keymap.set("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>")
+keymap.set("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>")
+keymap.set("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>")
+keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>")
+
+---
+-- LSP Keybindings
+local cmp = require('cmp')
+local cmp_action = require('lsp-zero').cmp_action()
+
+cmp.setup({
+    mapping = {
+        -- Navigate between completion item
+        ['<M-k>'] = cmp.mapping.select_prev_item(),
+        ['<M-j>'] = cmp.mapping.select_next_item(),
+
+        -- toggle completion
+        ['<M-u>'] = cmp_action.toggle_completion(),
+
+        -- navigate between snippet placeholder
+        ['<C-a>'] = cmp_action.luasnip_jump_backward(),
+        ['<C-d>'] = cmp_action.luasnip_jump_forward(),
+
+        -- Confirm item
+        ['<Tab>'] = cmp.mapping.confirm({select = true}),
+    }
+})
+
