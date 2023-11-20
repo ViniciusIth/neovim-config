@@ -2,7 +2,6 @@ local lsp_zero = require('lsp-zero')
 local luasnip = require('luasnip')
 
 lsp_zero.on_attach(function(client, bufnr)
-    print("attached")
     -- see :help lsp-zero-keybindings
     -- to learn the available actions
     lsp_zero.default_keymaps({ buffer = bufnr })
@@ -19,7 +18,6 @@ lsp_zero.set_sign_icons({
 ---
 -- Autocompletition
 ---
-local cmp_nvim = require('cmp_nvim_lsp')
 local cmp = require('cmp')
 cmp.setup {
     snippet = {
@@ -30,12 +28,18 @@ cmp.setup {
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
-    }),
+    })
 }
+
+require("luasnip.loaders.from_vscode").lazy_load()
+local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+lsp_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 ---
 -- installed language servers
+---
 require 'lspconfig'.gopls.setup {
+    capabilities = lsp_capabilities,
     cmd = { "gopls" },
     filetypes = { "go", "gomod", "gowork", "gotmpl" },
     root_dir = require('lspconfig/util').root_pattern("go.work", "go.mod", ".git"),
@@ -51,6 +55,7 @@ require 'lspconfig'.gopls.setup {
 }
 
 require 'lspconfig'.lua_ls.setup {
+    capabilities = lsp_capabilities,
     settings = {
         Lua = {
             diagnostics = {
@@ -66,4 +71,8 @@ require 'lspconfig'.lua_ls.setup {
     }
 }
 
-lsp_zero.setup_servers({ 'html', 'htmx' })
+require 'lspconfig'.html.setup {
+    capabilities = lsp_capabilities,
+}
+
+lsp_zero.setup_servers({ 'htmx' })
