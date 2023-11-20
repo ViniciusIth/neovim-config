@@ -9,13 +9,14 @@ keymap.set("n", "<leader>pv", vim.cmd.Ex)
 keymap.set("n", "<leader>w", ":w<CR>")
 
 -- Escape with jj
-keymap.set({"i"}, "jj", "<esc>")
+keymap.set({ "i" }, "jj", "<esc>")
 
 -- Allow moving when line selected
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
-
+-- Format with leader f
+keymap.set("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>")
 -- Tmux-sessionizer
 -- keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
@@ -46,7 +47,6 @@ cmp.setup({
         ['<C-d>'] = cmp_action.luasnip_jump_forward(),
 
         -- Confirm item
-        ['<Tab>'] = cmp.mapping.confirm({select = true}),
+        ['<Tab>'] = cmp.mapping.confirm({ select = true }),
     }
 })
-
