@@ -27,26 +27,3 @@ keymap.set("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>")
 keymap.set("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>")
 keymap.set("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>")
 keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>")
-
----
--- LSP Keybindings
-local cmp = require('cmp')
-local cmp_action = require('lsp-zero').cmp_action()
-
-cmp.setup({
-    mapping = {
-        -- Navigate between completion item
-        ['<M-k>'] = cmp.mapping.select_prev_item(),
-        ['<M-j>'] = cmp.mapping.select_next_item(),
-
-        -- toggle completion
-        ['<M-u>'] = cmp_action.toggle_completion(),
-
-        -- navigate between snippet placeholder
-        ['<C-a>'] = cmp_action.luasnip_jump_backward(),
-        ['<C-d>'] = cmp_action.luasnip_jump_forward(),
-
-        -- Confirm item
-        ['<Tab>'] = cmp.mapping.confirm({ select = true }),
-    }
-})

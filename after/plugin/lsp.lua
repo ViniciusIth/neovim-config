@@ -18,6 +18,7 @@ lsp_zero.set_sign_icons({
 ---
 -- Autocompletition
 ---
+local cmp_action = require('lsp-zero').cmp_action()
 local cmp = require('cmp')
 cmp.setup {
     snippet = {
@@ -28,7 +29,40 @@ cmp.setup {
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
-    })
+    }),
+    mapping = {
+        ['<Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            elseif luasnip.expand_or_locally_jumpable() then
+                luasnip.expand_or_jump()
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+        ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            elseif luasnip.expand_or_locally_jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, { 'i', 's' }),
+        -- -- Navigate between completion item
+        -- ['<M-k>'] = cmp.mapping.select_prev_item(),
+        -- ['<M-j>'] = cmp.mapping.select_next_item(),
+        --
+        -- -- toggle completion
+        -- ['<M-u>'] = cmp_action.toggle_completion(),
+        --
+        -- -- navigate between snippet placeholder
+        -- ['<C-a>'] = cmp_action.luasnip_jump_backward(),
+        -- ['<C-d>'] = cmp_action.luasnip_jump_forward(),
+        --
+        -- -- Confirm item
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    }
 }
 
 require("luasnip.loaders.from_vscode").lazy_load()
