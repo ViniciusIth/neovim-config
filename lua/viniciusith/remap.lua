@@ -24,7 +24,11 @@ keymap.set("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>")
 -- Dunno exactly how it works, but it makes things executable
 keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
-keymap.set("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>")
-keymap.set("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>")
-keymap.set("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>")
-keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>")
+-- Buffer navigation
+keymap.set("n", "<C-h>", ":bp!<CR>", { silent = true })
+keymap.set("n", "<C-l>", ":bn!<CR>", { silent = true })
+
+-- keymap.set("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>")
+-- keymap.set("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>")
+-- keymap.set("n", "<C-j>", "<cmd> TmuxNavigateDown<CR>")
+-- keymap.set("n", "<C-k>", "<cmd> TmuxNavigateUp<CR>")
