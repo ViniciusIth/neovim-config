@@ -4,7 +4,6 @@ local keymap = vim.keymap
 
 -- keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
-
 -- Save with <leader>w
 keymap.set("n", "<leader>w", ":w<CR>")
 
@@ -22,7 +21,7 @@ keymap.set("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>")
 -- keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 -- Dunno exactly how it works, but it makes things executable
-keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+-- keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- Buffer navigation
 keymap.set("n", "<C-h>", ":bp!<CR>", { silent = true })
