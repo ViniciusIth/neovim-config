@@ -2,7 +2,7 @@ vim.g.mapleader = " "
 
 local keymap = vim.keymap
 
-keymap.set("n", "<leader>pv", vim.cmd.Ex)
+-- keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 
 -- Save with <leader>w
@@ -17,6 +17,7 @@ keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Format with leader f
 keymap.set("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>")
+
 -- Tmux-sessionizer
 -- keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 

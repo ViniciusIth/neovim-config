@@ -8,14 +8,6 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     -- Theme
-    -- use({
-    --     'rose-pine/neovim',
-    --     as = 'rose-pine',
-    --     config = function()
-    --         vim.cmd('colorscheme rose-pine')
-    --     end
-    -- })
-
     use { "catppuccin/nvim", as = "catppuccin" }
 
 
@@ -29,6 +21,10 @@ return require('packer').startup(function(use)
     use('mbbill/undotree')
     use('tpope/vim-fugitive')
     use('numToStr/Comment.nvim')
+
+    use {
+        'nvim-tree/nvim-tree.lua',
+    }
 
     use {
         'nvim-lualine/lualine.nvim',
@@ -66,6 +62,4 @@ return require('packer').startup(function(use)
             "nvim-treesitter/nvim-treesitter",
         },
     }
-
-    use 'ThePrimeagen/vim-be-good'
 end)

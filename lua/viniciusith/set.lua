@@ -1,4 +1,9 @@
 local set = vim.opt
+local global = vim.g
+
+-- Disable netrw
+global.loaded_netrw = 1
+global.loaded_netrwPlugin = 1
 
 -- Activate line number and make them relative
 set.nu = true
