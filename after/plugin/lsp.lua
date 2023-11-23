@@ -1,5 +1,7 @@
 local lsp_zero = require('lsp-zero')
 local luasnip = require('luasnip')
+require("mason").setup()
+require("mason-lspconfig").setup()
 
 lsp_zero.on_attach(function(client, bufnr)
     -- see :help lsp-zero-keybindings
@@ -49,17 +51,10 @@ cmp.setup {
                 fallback()
             end
         end, { 'i', 's' }),
-        -- -- Navigate between completion item
-        -- ['<M-k>'] = cmp.mapping.select_prev_item(),
-        -- ['<M-j>'] = cmp.mapping.select_next_item(),
-        --
-        -- -- toggle completion
-        -- ['<M-u>'] = cmp_action.toggle_completion(),
-        --
         -- -- navigate between snippet placeholder
         -- ['<C-a>'] = cmp_action.luasnip_jump_backward(),
         -- ['<C-d>'] = cmp_action.luasnip_jump_forward(),
-        --
+
         -- -- Confirm item
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
     }
@@ -106,6 +101,11 @@ require 'lspconfig'.lua_ls.setup {
 }
 
 require 'lspconfig'.html.setup {
+    capabilities = lsp_capabilities,
+    filetypes = { "html", "templ" }
+}
+
+require 'lspconfig'.templ.setup {
     capabilities = lsp_capabilities,
 }
 
