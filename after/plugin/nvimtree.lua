@@ -35,6 +35,10 @@ local function my_on_attach(bufnr)
         return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
     end
 
+    vim.keymap.set("n", "D", api.fs.remove, opts("Delete file or directory"))
+    vim.keymap.set("n", "d", api.fs.create, opts("Create file or directory"))
+    vim.keymap.set("n", "r", api.fs.rename_full, opts("Rename file"))
+
     vim.keymap.set("n", "l", edit_or_open, opts("Edit Or Open"))
     vim.keymap.set("n", "L", vsplit_preview, opts("Vsplit Preview"))
     vim.keymap.set("n", "h", api.tree.close, opts("Close"))
