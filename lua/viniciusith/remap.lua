@@ -26,6 +26,7 @@ keymap.set("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>")
 -- Buffer navigation
 keymap.set("n", "<C-h>", ":bp!<CR>", { silent = true })
 keymap.set("n", "<C-l>", ":bn!<CR>", { silent = true })
+keymap.set("n", "<leader>q", ":bd<CR>", { silent = true })
 
 -- keymap.set("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>")
 -- keymap.set("n", "<C-l>", "<cmd> TmuxNavigateRight<CR>")

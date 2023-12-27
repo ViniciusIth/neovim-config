@@ -61,6 +61,7 @@ cmp.setup {
 }
 
 require("luasnip.loaders.from_vscode").lazy_load()
+require 'luasnip'.filetype_extend("svelte", { "html", "tailwindCSS", "tsserver" })
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 lsp_capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -102,11 +103,15 @@ require 'lspconfig'.lua_ls.setup {
 
 require 'lspconfig'.html.setup {
     capabilities = lsp_capabilities,
-    filetypes = { "html", "templ" }
+    filetypes = { "html", "svelte" },
 }
 
-require 'lspconfig'.templ.setup {
+require("lspconfig").tailwindcss.setup {
     capabilities = lsp_capabilities,
 }
 
-lsp_zero.setup_servers({ 'htmx' })
+require("lspconfig").tsserver.setup {
+    filetypes = { "svelte" }
+}
+
+lsp_zero.setup_servers({ 'htmx', 'tsserver' })
